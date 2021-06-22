@@ -16,7 +16,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 find_package(OpenCV REQUIRED)
 
 # set(EIGEN_INCLUDE_DIR "/usr/local/include/eigen3")
-find_package(Ceres REQUIRED)
+find_package(Ceres REQUIRED PATHS "/home/nuc10/third_lib/ceres-solver/install")
 include_directories(${CERES_INCLUDE_DIRS})
 
 

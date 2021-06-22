@@ -34,8 +34,8 @@ find_package(OpenCV REQUIRED)
 
 # message(WARNING "OpenCV_VERSION: ${OpenCV_VERSION}")
 
-find_package(Ceres REQUIRED)
-find_package(PCL REQUIRED)
+find_package(Ceres REQUIRED PATHS "/home/nuc10/third_lib/ceres-solver/install")
+find_package(PCL REQUIRED PATHS "/home/nuc10/third_lib/pcl-pcl-1.9.1/install")
 
 find_package(PythonLibs REQUIRED)
 
