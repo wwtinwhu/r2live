@@ -1,6 +1,8 @@
 %YAML:1.0
 
 imu_topic: "/livox/imu/"
+image_compressed: 0 # 0 sensor_msgs::Image
+                    # 1 sensor_msgs::CompressedImage
 
 #camera calibration 
 model_type: PINHOLE

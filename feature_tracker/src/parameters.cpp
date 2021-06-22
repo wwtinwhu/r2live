@@ -16,6 +16,7 @@ int ROW;
 int COL;
 int FOCAL_LENGTH;
 int FISHEYE;
+int IMAGE_COMPRESSED;
 bool PUB_THIS_FRAME;
 
 template <typename T>
@@ -56,6 +57,7 @@ void readParameters(ros::NodeHandle &n)
     SHOW_TRACK = fsSettings["show_track"];
     EQUALIZE = fsSettings["equalize"];
     FISHEYE = fsSettings["fisheye"];
+    IMAGE_COMPRESSED = fsSettings["image_compressed"];
     if (FISHEYE == 1)
         FISHEYE_MASK = VINS_FOLDER_PATH + "config/fisheye_mask.jpg";
     CAM_NAMES.push_back(config_file);
