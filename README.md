@@ -1,7 +1,7 @@
 # R2LIVE
 ## A Robust, Real-time, LiDAR-Inertial-Visual tightly-coupled state Estimator and mapping
 
-**Our preprint paper**: we have corrected some typos and errors of our previous version of paper, the amended paper can be access at [here](paper/R2LIVE_amended_v1.pdf). When amending our paper, I would like to thanks [narutojxl (焦小亮)](https://github.com/narutojxl), who has found my errors and provided his corrections.
+**Our preprint paper**: we have corrected some typos and errors of our previous version of paper, the amended paper can be access at [here](paper/r2live_ral_final.pdf). When amending our paper, I would like to thanks [narutojxl (焦小亮)](https://github.com/narutojxl), who has found my errors and provided his corrections.
  
 **Our related video**: our related video is now available on YouTube (click below images to open):
 <div align="center">
@@ -35,7 +35,7 @@ Follow [Ceres Installation](http://ceres-solver.org/installation.html).
 ### 1.3. **livox_ros_driver**
 Follow [livox_ros_driver Installation](https://github.com/Livox-SDK/livox_ros_driver).
 
-## 2. Build
+## 2. Build r2live on ROS:
 Clone the repository and catkin_make:
 
 ```
@@ -46,18 +46,53 @@ Clone the repository and catkin_make:
     source ~/catkin_ws/devel/setup.bash
 ```
 
-## 3. Run our examples
+## 3. Docker Support (optional)
+To further facilitate the building process, we add docker in our code. Docker environment is like a sandbox, thus makes our code environment-independent. 
+
+Docker build
+
+```
+    docker/build
+```
+Run 
+
+```
+    xhost +
+    docker/run
+```
+
+Run with gpu support
+
+```
+    xhost +
+    docker/run_gpu
+``` 
+
+## 4. Run our examples
 Download [Our recorded rosbag](https://drive.google.com/drive/folders/1LpoX6_05Zic-mRLOD38EO0w2ABXI1rrW?usp=sharing) and then
 ```
 roslaunch r2live demo.launch
 rosbag play YOUR_DOWNLOADED.bag
 ```
+If everything is correct, you will get the result that matches our paper:)
+The result of [indoor_aggressive.bag](https://drive.google.com/file/d/1UwEna7S6Unm0RuGcSZhUkEstNsbJaMjX/view?usp=sharing) (the Experiment-1 in our [paper](paper/r2live_ral_final.pdf)):
+<div align="center">
+    <img src="pics/indoor_aggressive_bag_res.png" width = 60% >
+</div>
 
-## 4.Acknowledgments
+and [hku_main_building.bag](https://drive.google.com/file/d/1cwCuUYkUwL4ch_oloAoUMfL-G1MHTdMk/view?usp=sharing) (our Experiment-3).
+<div align="center">
+    <img src="pics/cover.png" width = 60% >
+</div>
+
+## 5. Sampling and run your own data
+Since the LiDAR data and IMU data published by the official Livox-ros-driver is with the timestamp of LiDAR (started from 0 in each recording), and the timestamp of the image is usually recorded with the timestamp of the operation system. To make them working under the same time-based, we modified the source code of Livox-ros-driver, which is available at [here](https://github.com/ziv-lin/livox_ros_driver_for_R2LIVE). We suggest you replace the official driver with it when sampling your own data for R2LIVE.
+
+## 6. Acknowledgments
 Our repository contains two main subsystems, with our LiDAR-inertial and visual-inertial system is developed based on [FAST-LIO](https://github.com/hku-mars/FAST_LIO) and [VINS-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono), respectively. Besides, our implementations also use the codes of [ikd-Tree](https://github.com/hku-mars/ikd-Tree), [BALM](https://github.com/hku-mars/BALM) and [loam-livox](https://github.com/hku-mars/loam_livox).
 
 
-## 5. License
+## 7. License
 The source code is released under [GPLv2](http://www.gnu.org/licenses/) license.
 
 We are still working on improving the performance and reliability of our codes. For any technical issues, please contact me via email Jiarong Lin < ziv.lin.ljr@gmail.com >.
